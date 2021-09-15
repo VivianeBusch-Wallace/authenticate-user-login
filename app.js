@@ -9,7 +9,7 @@ const morgan = require("morgan");
 app.use(morgan("dev"));
 
 // cookie-parser and express-session >>
-const session = require("express-session");
+const expressSession = require("express-session");
 const cookieParser = require("cookie-parser");
 
 // express-validator >>
@@ -66,17 +66,20 @@ mongoose
   })
   .then(console.log("Database connected successfully."))
   .catch((err) => {
-    console.log(`There was an error connecting to the database ${err.message}`);
+    console.log(
+      `There was an error connecting to the database: ${err.message}`
+    );
   });
 
 // allow uploads >>
 app.use("/uploads", express.static("uploads")); // need to create dir myself?
 
 // root route >>
-app.use("/", authentication);
+// app.use("/", authentication);
 
 // const users = require("./routes/users");
 // app.use("/users", users);
+
 // const user = require("./routes/user");
 // app.use("/user", user);
 
