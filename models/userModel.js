@@ -14,7 +14,7 @@ const userSchema = Schema({
     type: String,
     required: "You have to provide a password",
   },
-  role: String,
+  role: String, // example >> "ADMIN"
   avatar: String, // is string because is a path to an image
 });
 
