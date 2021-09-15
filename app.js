@@ -19,6 +19,9 @@ const validator = require("express-validator");
 const hbs = require("express-handlebars");
 const path = require("path");
 
+// authenticate
+const authentication = require("./routes/auth");
+
 // SETUP >>
 
 // for data  processing >>
@@ -65,8 +68,15 @@ mongoose
   });
 
 // allow uploads >>
+app.use("/uploads", express.static("uploads")); // need to create dir myself?
 
 // root route >>
+app.use("/", authentication);
+
+// const users = require("./routes/users");
+// app.use("/users", users);
+// const user = require("./routes/user");
+// app.use("/user", user);
 
 // Notes and stuff >>
 /*
