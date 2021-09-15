@@ -7,7 +7,7 @@ const SessionSchema = Schema({
   },
   user_id: {
     type: mongoose.Schema.ObjectId,
-    ref: "UserModel",
+    ref: "UserModel", // connection to userModel
   },
 });
 const Session = mongoose.model("Session", SessionSchema);
