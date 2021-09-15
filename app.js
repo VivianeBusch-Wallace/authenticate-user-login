@@ -38,10 +38,18 @@ app.engine(
 );
 
 // validation setup >>
+const { body, validationResult } = validator;
 
 // cookies >>
-
+app.use(cookieParser());
 // sessions >>
+app.use(
+  expressSession({
+    secret: "secretSecret", // later to be put into .env
+    saveUninitialized: false,
+    resave: false,
+  })
+);
 
 // connecting to MongoDB (database) >>
 // mongoose import for mongoDB >>
