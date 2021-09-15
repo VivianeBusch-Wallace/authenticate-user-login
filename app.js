@@ -19,14 +19,46 @@ const validator = require("express-validator");
 const hbs = require("express-handlebars");
 const path = require("path");
 
-// mongoose import for mongoDB >>
-const mongoose = require("mongoose");
-
 // SETUP >>
 
 // for data  processing >>
-app.use(express.json()); // << for being able to parse json data
+app.use(express.json()); // << for being able to parse json data (from requests)
 app.use(express.urlencoded({ extended: true })); // << for being able to receive data from forms
+
+// setting up handlebars as view engine >>
+app.set("view engine", "hbs");
+app.set("views", path.join(__dirname, "views"));
+app.engine(
+  "hbs",
+  hbs({
+    extname: "hbs",
+    defaultLayout: "layout",
+    layoutDir: __dirname + "views/layouts/",
+  })
+);
+
+// validation setup >>
+
+// cookies >>
+
+// sessions >>
+
+// connecting to MongoDB (database) >>
+// mongoose import for mongoDB >>
+const mongoose = require("mongoose");
+mongoose
+  .connect(process.env.DB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(console.log("Database connected successfully."))
+  .catch((err) => {
+    console.log(`There was an error connecting to the database ${err.message}`);
+  });
+
+// allow uploads >>
+
+// root route >>
 
 // Notes and stuff >>
 /*
