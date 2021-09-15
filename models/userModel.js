@@ -15,7 +15,7 @@ const userSchema = Schema({
     required: "You have to provide a password",
   },
   role: String,
-  avatar: String,
+  avatar: String, // is string because is a path to an image
 });
 
 const UserModel = mongoose.model("UserModel", userSchema);
