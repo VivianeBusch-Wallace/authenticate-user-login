@@ -15,6 +15,9 @@ const cookieParser = require("cookie-parser");
 // express-validator >>
 const validator = require("express-validator");
 
+// mongoose import for mongoDB >>
+const mongoose = require("mongoose");
+
 // view imports >>
 const hbs = require("express-handlebars");
 const path = require("path");
@@ -45,6 +48,7 @@ const { body, validationResult } = validator;
 
 // cookies >>
 app.use(cookieParser());
+
 // sessions >>
 app.use(
   expressSession({
@@ -55,8 +59,6 @@ app.use(
 );
 
 // connecting to MongoDB (database) >>
-// mongoose import for mongoDB >>
-const mongoose = require("mongoose");
 mongoose
   .connect(process.env.DB_URL, {
     useNewUrlParser: true,
@@ -77,6 +79,9 @@ app.use("/", authentication);
 // app.use("/users", users);
 // const user = require("./routes/user");
 // app.use("/user", user);
+
+// exporting to server.js >>
+module.exports = app;
 
 // Notes and stuff >>
 /*
